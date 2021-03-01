@@ -20,7 +20,7 @@ export const fetchAsyncLogin = createAsyncThunk(
 export const fetchAsyncRegister = createAsyncThunk(
   "auth/register",
   async (auth: PROPS_AUTHEN) => {
-    const res = await axios.post(`${apiUrl}api/register`, auth, {
+    const res = await axios.post(`${apiUrl}api/register/`, auth, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,7 +32,7 @@ export const fetchAsyncRegister = createAsyncThunk(
 export const fetchAsyncCreateProf = createAsyncThunk(
   "profile/post",
   async (nickName: PROPS_NICKNAME) => {
-    const res = await axios.post(`${apiUrl}api/profile`, nickName, {
+    const res = await axios.post(`${apiUrl}api/profile/`, nickName, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.localJWT}`,
@@ -49,7 +49,7 @@ export const fetchAsyncUpdateProf = createAsyncThunk(
     uploadData.append("nickName", profile.nickName);
     profile.img && uploadData.append("img", profile.img, profile.img.name);
     const res = await axios.put(
-      `${apiUrl}api/profile/${profile.id}`,
+      `${apiUrl}api/profile/${profile.id}/`,
       uploadData,
       {
         headers: {
@@ -134,7 +134,7 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAsyncLogin.fulfilled, (_state, action) => {
+    builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
       localStorage.setItem("localJWT", action.payload.access);
     });
     builder.addCase(fetchAsyncCreateProf.fulfilled, (state, action) => {

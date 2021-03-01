@@ -68,8 +68,7 @@ const Auth: React.FC = () => {
             if (fetchAsyncRegister.fulfilled.match(resultReg)) {
               await dispatch(fetchAsyncLogin(values));
               await dispatch(fetchAsyncCreateProf({ nickName: "anonymous" }));
-
-              await dispatch(fetchAsyncGetMyProf());
+              await dispatch(fetchAsyncGetProfs());
               await dispatch(fetchAsyncGetPosts());
               await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProf());
