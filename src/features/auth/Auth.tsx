@@ -224,7 +224,6 @@ const Auth: React.FC = () => {
                     onBlur={handleBlur}
                     value={values.password}
                   />
-                  <br />
                   {touched.password && errors.password ? (
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
