@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Post.module.css";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Divider, Checkbox } from "@material-ui/core";
+import { Avatar, Divider, Checkbox, Box, Button } from "@material-ui/core";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
 
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
@@ -21,6 +21,8 @@ import {
 } from "./postSlice";
 
 import { PROPS_POST } from "../types";
+
+import AirplanemodeActiveIcon from "@material-ui/icons/AirplanemodeActive";
 
 const useStyles = makeStyles((theme) => ({
   small: {
@@ -136,14 +138,19 @@ const Post: React.FC<PROPS_POST> = ({
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button
-            disabled={!text.length}
-            className={styles.post_button}
-            type="submit"
-            onClick={postComment}
-          >
-            Post
-          </button>
+          <Box component="span" m={1}>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={!text.length}
+              className={styles.post_button}
+              type="submit"
+              onClick={postComment}
+              startIcon={<AirplanemodeActiveIcon />}
+            >
+              Post
+            </Button>
+          </Box>
         </form>
       </div>
     );
