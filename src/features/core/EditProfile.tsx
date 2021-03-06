@@ -20,6 +20,8 @@ import {
 import { Button, TextField, IconButton } from "@material-ui/core";
 import { MdAddAPhoto } from "react-icons/md";
 
+import UpdateIcon from "@material-ui/icons/Update";
+
 const customStyles = {
   content: {
     top: "55%",
@@ -91,6 +93,7 @@ const EditProfile: React.FC = () => {
             color="primary"
             type="submit"
             onClick={updateProfile}
+            startIcon={<UpdateIcon />}
           >
             Update
           </Button>
