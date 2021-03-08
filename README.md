@@ -5,7 +5,7 @@
 
 # Requriments
 
-## 【フロントエンド】
+### 【フロントエンド】
 
 - React 17.0.1
 - TypeScript 3.8.2
