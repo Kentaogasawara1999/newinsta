@@ -15,8 +15,10 @@ import {
   fetchAsyncNewPost,
 } from "../post/postSlice";
 
-import { Button, TextField, IconButton } from "@material-ui/core";
+import { Button, TextField, IconButton, Box } from "@material-ui/core";
 import { MdAddAPhoto } from "react-icons/md";
+
+import AirplanemodeActiveIcon from "@material-ui/icons/AirplanemodeActive";
 
 const customStyles = {
   content: {
@@ -33,7 +35,7 @@ const customStyles = {
 
 const NewPost: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const openNewPosst = useSelector(selectOpenNewPost);
+  const openNewPost = useSelector(selectOpenNewPost);
 
   const [image, setImage] = useState<File | null>(null);
   const [title, setTitle] = useState("");
@@ -57,7 +59,7 @@ const NewPost: React.FC = () => {
   return (
     <>
       <Modal
-        isOpen={openNewPosst}
+        isOpen={openNewPost}
         onRequestClose={async () => {
           await dispatch(resetOpenNewPost());
         }}
@@ -88,6 +90,7 @@ const NewPost: React.FC = () => {
             variant="contained"
             color="primary"
             onClick={newPost}
+            startIcon={<AirplanemodeActiveIcon />}
           >
             New Post
           </Button>

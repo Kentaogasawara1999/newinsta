@@ -101,7 +101,6 @@ const Auth: React.FC = () => {
                     {isLoadingAuth && <CircularProgress />}
                   </div>
                   <br />
-
                   <TextField
                     placeholder="email"
                     type="input"
