@@ -101,7 +101,6 @@ const Auth: React.FC = () => {
                     {isLoadingAuth && <CircularProgress />}
                   </div>
                   <br />
-
                   <TextField
                     placeholder="email"
                     type="input"
@@ -224,7 +223,6 @@ const Auth: React.FC = () => {
                     onBlur={handleBlur}
                     value={values.password}
                   />
-                  <br />
                   {touched.password && errors.password ? (
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
