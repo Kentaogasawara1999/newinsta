@@ -15,7 +15,7 @@ import {
   fetchAsyncNewPost,
 } from "../post/postSlice";
 
-import { Button, TextField, IconButton, Box } from "@material-ui/core";
+import { Button, TextField, IconButton } from "@material-ui/core";
 import { MdAddAPhoto } from "react-icons/md";
 
 import AirplanemodeActiveIcon from "@material-ui/icons/AirplanemodeActive";
