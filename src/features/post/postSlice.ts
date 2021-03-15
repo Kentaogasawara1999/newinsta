@@ -24,7 +24,7 @@ export const fetchAsyncNewPost = createAsyncThunk(
     const res = await axios.post(apiUrlPost, uploadData, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${localStorage.localJWT}`,
+        Authorization: `JWT ${localStorage.localJWT}`,
       },
     });
     return res.data;
@@ -91,6 +91,7 @@ export const fetchAsyncPostComment = createAsyncThunk(
     return res.data;
   }
 );
+
 export const postSlice = createSlice({
   name: "post",
   initialState: {

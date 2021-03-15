@@ -20,7 +20,7 @@ export const fetchAsyncLogin = createAsyncThunk(
 export const fetchAsyncRegister = createAsyncThunk(
   "auth/register",
   async (auth: PROPS_AUTHEN) => {
-    const res = await axios.post(`${apiUrl}api/register`, auth, {
+    const res = await axios.post(`${apiUrl}api/register/`, auth, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,7 +32,7 @@ export const fetchAsyncRegister = createAsyncThunk(
 export const fetchAsyncCreateProf = createAsyncThunk(
   "profile/post",
   async (nickName: PROPS_NICKNAME) => {
-    const res = await axios.post(`${apiUrl}api/profile`, nickName, {
+    const res = await axios.post(`${apiUrl}api/profile/`, nickName, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.localJWT}`,
@@ -49,7 +49,7 @@ export const fetchAsyncUpdateProf = createAsyncThunk(
     uploadData.append("nickName", profile.nickName);
     profile.img && uploadData.append("img", profile.img, profile.img.name);
     const res = await axios.put(
-      `${apiUrl}api/profile/${profile.id}`,
+      `${apiUrl}api/profile/${profile.id}/`,
       uploadData,
       {
         headers: {
@@ -65,7 +65,7 @@ export const fetchAsyncUpdateProf = createAsyncThunk(
 export const fetchAsyncGetMyProf = createAsyncThunk("profile/get", async () => {
   const res = await axios.get(`${apiUrl}api/myprofile/`, {
     headers: {
-      Authorization: `JWT ${localStorage.localJwT}`,
+      Authorization: `JWT ${localStorage.localJWT}`,
     },
   });
   return res.data[0];
@@ -74,10 +74,10 @@ export const fetchAsyncGetMyProf = createAsyncThunk("profile/get", async () => {
 export const fetchAsyncGetProfs = createAsyncThunk("profiles/get", async () => {
   const res = await axios.get(`${apiUrl}api/profile/`, {
     headers: {
-      Authorization: `JWT ${localStorage.localJwT}`,
+      Authorization: `JWT ${localStorage.localJWT}`,
     },
   });
-  return res.data[0];
+  return res.data;
 });
 
 export const authSlice = createSlice({
@@ -134,7 +134,7 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAsyncLogin.fulfilled, (_state, action) => {
+    builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
       localStorage.setItem("localJWT", action.payload.access);
     });
     builder.addCase(fetchAsyncCreateProf.fulfilled, (state, action) => {
@@ -175,4 +175,4 @@ export const selectOpenProfile = (state: RootState) => state.auth.openProfile;
 export const selectProfile = (state: RootState) => state.auth.myprofile;
 export const selectProfiles = (state: RootState) => state.auth.profiles;
 
-export default authSlice.reducer;
+export default authSlice.reducer; 

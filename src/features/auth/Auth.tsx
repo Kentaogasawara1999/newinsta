@@ -35,7 +35,7 @@ const customStyles = {
     left: "50%",
 
     width: 280,
-    heigth: 350,
+    height: 350,
     padding: "50px",
 
     transform: "translate(-50%, -50%)",
@@ -69,7 +69,7 @@ const Auth: React.FC = () => {
               await dispatch(fetchAsyncLogin(values));
               await dispatch(fetchAsyncCreateProf({ nickName: "anonymous" }));
 
-              await dispatch(fetchAsyncGetMyProf());
+              await dispatch(fetchAsyncGetProfs());
               await dispatch(fetchAsyncGetPosts());
               await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProf());
@@ -216,6 +216,7 @@ const Auth: React.FC = () => {
                   {touched.email && errors.email ? (
                     <div className={styles.auth_error}>{errors.email}</div>
                   ) : null}
+                  <br />
 
                   <TextField
                     placeholder="password"
@@ -225,7 +226,6 @@ const Auth: React.FC = () => {
                     onBlur={handleBlur}
                     value={values.password}
                   />
-                  <br />
                   {touched.password && errors.password ? (
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
